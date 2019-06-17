@@ -1,0 +1,23 @@
+create questions library array
+questions[]
+-questionText
+-correct answer number
+-Answers []
+	q1
+	q2
+	q3
+	q4
+
+clear questions div
+set question on page = question 0
+jquery:  append answers on page = answers 1-n
+	make answers clickable
+	onclick:  function answer(repsonseNumber)
+
+
+function answer(response)
+	clear game div.
+	if (response = correctAnswser) {
+		youGoItRight()
+	else
+		youGotItWrong()
