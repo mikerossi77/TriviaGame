@@ -92,6 +92,7 @@ $(document).ready(function () {
                 if (theirAnswerNumber === theAnswer) {
                     $("#gameMain").empty();
                     $("#gameMain").append("<h1>That is correct!</h1>");
+                    $("#gameMain").append("<h1>" + questions[currentQuestionNum].explanation + "</h1>");
                     wins++;
                     timeBeforeNextQuestion = setTimeout(nextQuestion, timePerQuestion*1000);
                 }
