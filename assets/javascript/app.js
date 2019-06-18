@@ -56,6 +56,8 @@ $(document).ready(function () {
     var timeRemaining;
     var timeBeforeNextQuestion;
     var firstQuestion = true;
+    let wins = 0;
+    let losses = 0;
 
     const startQuestion = function () {
         //Write question and answers to page
@@ -90,6 +92,8 @@ $(document).ready(function () {
                 if (theirAnswerNumber === theAnswer) {
                     $("#gameMain").empty();
                     $("#gameMain").append("<h1>That is correct!</h1>");
+                    wins++;
+                    timeBeforeNextQuestion = setTimeout(nextQuestion, timePerQuestion*1000);
                 }
                 
                 // If wrong
@@ -98,6 +102,8 @@ $(document).ready(function () {
                     $("#gameMain").append("<h1>That is not correct.</h1>");
                     $("#gameMain").append("<h1>The correct answer is:  " + questions[currentQuestionNum].answers[questions[currentQuestionNum].correctAnswer] + "</h1>");
                     $("#gameMain").append("<h1>" + questions[currentQuestionNum].explanation + "</h1>");
+                    losses++
+                    timeBeforeNextQuestion = setTimeout(nextQuestion, timePerQuestion*1000);
                 }
                 
                 //Show next Question button
@@ -105,7 +111,7 @@ $(document).ready(function () {
                     stopTimer();
                     nextQuestion();
                 })
-                $("#gameMain").append(nextQuestionButton);
+                //$("#gameMain").append(nextQuestionButton);
 
 
             });
@@ -128,9 +134,13 @@ $(document).ready(function () {
         }
         else {
             console.log("GAME OVER!")
+            $("#gameMain").empty();
+            $("#gameMain").append("<h1>Game Over!</h1>");
+            $("#gameMain").append("<h1>You got " + wins + " correct, and " + losses + " wrong!</h1>");
         }
     }
     var outOfTime = function () {
+        losses++;
         stopTimer();
         $("#gameMain").empty();
         $("#gameMain").append("<h1>You are out of time!</h1>");
